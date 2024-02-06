@@ -8,15 +8,12 @@ function App() {
   const [isDarkMode, setDarkMode] = React.useState<boolean>(false);
   const [searchWord, serSearchWord] = React.useState<string>("");
   const [word, setWord] = React.useState<Words>();
-  const [isLoading, setLoading] = React.useState<boolean>(false);
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
       .then((res) => res.json())
       .then((data) => setWord(data[0]));
-    setLoading(false);
   };
 
   const handlePlayAudio = async (audio: string) => {
